@@ -38,4 +38,4 @@ Links contain a `<href>` element.
 Tag elements only contain a `<name>` element currently. This could be expanded later to include creation dates of the tags.
 
 ## Category
-Category elements only contain a `<name> element currently. This could be expanded later to include creation dates of the categories and a description for the categories.
+Category elements only contain a <name> element currently. This could be expanded later to include creation dates of the categories and a description for the categories.
