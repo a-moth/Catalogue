@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="catalogue.xsl"?>
+
+<catalog>
+    <tags>
+        <tag>
+            <name>xml</name>
+        </tag>
+        <tag>
+            <name>xslt</name>
+        </tag>
+        <tag>
+            <name>coping skills</name>
+        </tag>
+        <tag>
+            <name>resource</name>
+        </tag>
+        <tag>
+            <name>professional tool</name>
+        </tag>
+        <tag>
+            <name>typescript</name>
+        </tag>
+        <tag>
+            <name>react</name>
+        </tag>
+    </tags>
+    <categories>
+        <category>
+            Programming
+        </category>
+        <category>
+            Autism
+        </category>
+        <category>
+            AuDHD
+        </category>
+        <category>
+            ADHD
+        </category>
+        <category>
+            Dissociation
+        </category>
+    </categories>
+    <entries>
+        <entry id="example">
+            <metadata>
+                <created>2026-07-27T13:00:00Z</created>
+                <modified>2026-07-27T13:00:00Z</modified>
+            </metadata>
+
+            <title>Example Entry</title>
+
+            <tags>
+                <tag>
+                    <name>xml</name>
+                </tag>
+                <tag>
+                    <name>xslt</name>
+                </tag>
+            </tags>
+
+            <categories>
+                <category>
+                    <name>Programming</name>
+                </category>
+            </categories>
+
+            <description>
+                A test catalogue entry.
+            </description>
+
+            <image>
+                <title>Git Logo</title>
+                <href>https://git-scm.com/images/logo@2x.png</href>
+                <width>100</width>
+            </image>
+            <image>
+                <title>Profile Picture</title>
+                <href>https://avatars.githubusercontent.com/u/279470816</href>
+                <width>100</width>
+            </image>
+            <image>
+                <title>Dev Website</title>
+                <href>https://media2.dev.to/dynamic/image/quality=100/https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png</href>
+                <width>100</width>
+            </image>
+        </entry>
+        <entry id="AQ">
+            <metadata>
+                <created>2026-07-27T14:00:00Z</created>
+                <modified>2026-07-27T15:00:00Z</modified>
+            </metadata>
+
+            <title>Autism Quotient</title>
+
+            <tags>
+                <tag>
+                    <name>resource</name>
+                </tag>
+                <tag>
+                    <name>professional tool</name>
+                </tag>
+            </tags>
+
+            <categories>
+                <category>
+                    <name>Autism</name>
+                </category>
+                <category>
+                    <name>AuDHD</name>
+                </category>
+            </categories>
+
+            <description>
+                A test entry for Autism &amp; AuDHD.
+            </description>
+
+            <link>
+                <title>Autism Spectrum Quotient</title>
+                <href>https://psychology-tools.com/test/autism-spectrum-quotient</href>
+            </link>
+        </entry>
+    </entries>
+</catalog>

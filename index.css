@@ -1,0 +1,51 @@
+.carousel {
+    max-width: 600px;
+    margin: 1rem 0;
+}
+
+.slides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+}
+
+.slides::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+
+    position: relative;
+    text-align: center;
+}
+
+.carousel-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.previous,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    text-decoration: none;
+    font-size: 2rem;
+    padding: 0.5rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.previous {
+    left: 0.5rem;
+}
+
+.next {
+    right: 0.5rem;
+}
