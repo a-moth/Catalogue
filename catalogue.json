@@ -1,0 +1,71 @@
+{
+  "$schema": "./catalogue.schema.json",
+  "schemaVersion": 1,
+  "tags": [
+    { "id": "xml", "name": "xml" },
+    { "id": "xslt", "name": "xslt" },
+    { "id": "coping-skills", "name": "coping skills" },
+    { "id": "resource", "name": "resource" },
+    { "id": "professional-tool", "name": "professional tool" },
+    { "id": "typescript", "name": "typescript" },
+    { "id": "react", "name": "react" }
+  ],
+  "categories": [
+    { "id": "programming", "name": "Programming" },
+    { "id": "autism", "name": "Autism" },
+    { "id": "audhd", "name": "AuDHD" },
+    { "id": "adhd", "name": "ADHD" },
+    { "id": "dissociation", "name": "Dissociation" }
+  ],
+  "entries": [
+    {
+      "id": "example",
+      "metadata": {
+        "created": "2026-07-27T13:00:00Z",
+        "modified": "2026-07-27T13:00:00Z"
+      },
+      "title": "Example Entry",
+      "description": "A test catalogue entry.",
+      "tagIds": ["xml", "xslt"],
+      "categoryIds": ["programming"],
+      "images": [
+        {
+          "title": "Git Logo",
+          "href": "https://git-scm.com/images/logo@2x.png",
+          "width": 100
+        },
+        {
+          "title": "Profile Picture",
+          "href": "https://avatars.githubusercontent.com/u/279470816",
+          "width": 100
+        },
+        {
+          "title": "Dev Website",
+          "href": "https://media2.dev.to/dynamic/image/quality=100/https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png",
+          "width": 100
+        }
+      ],
+      "links": [],
+      "favourite": false
+    },
+    {
+      "id": "AQ",
+      "metadata": {
+        "created": "2026-07-27T14:00:00Z",
+        "modified": "2026-07-27T15:00:00Z"
+      },
+      "title": "Autism Quotient",
+      "description": "A test entry for Autism & AuDHD.",
+      "tagIds": ["resource", "professional-tool"],
+      "categoryIds": ["autism", "audhd"],
+      "images": [],
+      "links": [
+        {
+          "title": "Autism Spectrum Quotient",
+          "href": "https://psychology-tools.com/test/autism-spectrum-quotient"
+        }
+      ],
+      "favourite": false
+    }
+  ]
+}

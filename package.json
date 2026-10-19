@@ -1,11 +1,15 @@
 {
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "sync": "node scripts/sync.ts"
   },
   "dependencies": {
     "xmlbuilder2": "^4.0.3"
   },
   "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "vite": "^8.1.5"
-  }
+  },
+  "type": "module"
 }
