@@ -2,40 +2,88 @@
 
 Welcome to the catalogue!
 
-This project is a tool designed to view XML content in a similar way to a Wiki.
+This project is a tool designed to view catalogue content in a similar way to a Wiki.
 
-The document contains `<entry>` elements with IDs inside an `<entries>` element, which is inside the `<catalog>`.
+The content lives in `catalogue.json`, which is strictly defined by `catalogue.schema.json` ([JSON Schema](https://json-schema.org/)).
+VS Code checks the file against the schema as you edit it.
 
-The document also contains `<tags>` and `<categories>`, which have their according `<tag>` and `<category>` entries.
+## Commands
+| Command | What it does |
+|---|---|
+| `npm run dev` | Starts the site locally |
+| `npm run add -- …` | Adds an entry (see [Adding an entry](#adding-an-entry)) |
+| `npm run sync` | Registers new tags and categories, then validates the catalogue |
+| `npm run typecheck` | Checks the TypeScript |
+
+## Document structure
+The document contains `schemaVersion`, `tags`, `categories` and `entries`.
+Unknown fields are rejected everywhere.
+
+```json
+{
+  "$schema": "./catalogue.schema.json",
+  "schemaVersion": 1,
+  "tags": [{ "id": "coping-skills", "name": "coping skills" }],
+  "categories": [{ "id": "adhd", "name": "ADHD" }],
+  "entries": [ … ]
+}
+```
 
 ## Entry
-Entry elements contain many elements.
-Elements include: metadata, title, tags, categories, description, image, and link.
-Not all elements are used by every entry, but it should be expected that there is always metadata, a title, and a description.
-Entries missing tags or categories in their elements will be impossible to sort (and won't show up) when filtering the entries by the associated element.
+Every entry contains all of these fields; lists may be empty.
 
-Additionally, these elements have nested data.
-### metadata
-Metadata contains a `<created>` and a `<modified>` element set.
+| Field | Type | Notes |
+|---|---|---|
+| `id` | string | A UUID for new entries |
+| `metadata.created` | date-time | ISO 8601, e.g. `2026-07-27T13:00:00Z` |
+| `metadata.modified` | date-time or `null` | |
+| `title` | string | Not blank |
+| `description` | string | Not blank |
+| `tagIds` | tag IDs | No duplicates |
+| `categoryIds` | category IDs | No duplicates |
+| `images` | image list | Shown as a carousel |
+| `links` | link list | Shown next to the metadata |
+| `favourite` | boolean | |
 
-### tags
-Tags contains `<tag>` elements which contain a `<name>` element.
-
-### categories
-Categories contains `<category>` element which contain a `<name>` element.
+Entries without tags or categories won't show up when filtering by them.
 
 ### image
-Images are added on their own directly within an entry.
-Multiple images are allowed, and they will turn into a carousel at the bottom.
-Images contain a `<href>` element.
+Contains a `title` and an `href` (URI), and optionally a `width` and `height` in pixels.
 
 ### link
-Links are added on their own directly within an entry.
-Multiple links are allowed, and they are shown in a list next to the metadata of the entry.
-Links contain a `<href>` element.
+Contains a `title` and an `href` (URI).
 
-## Tag
-Tag elements only contain a `<name>` element currently. This could be expanded later to include creation dates of the tags.
+## Tag and Category
+Tags and categories contain an `id` and a `name`.
 
-## Category
-Category elements only contain a `<name>` element currently. This could be expanded later to include creation dates of the categories and a description for the categories.
+- The `id` is a lowercase slug, e.g. `coping-skills`. Entries refer to tags and categories by ID.
+- The `name` is what's displayed. It can be changed freely; the ID stays the same.
+
+Using a new tag or category ID in an entry creates it automatically (via `npm run add` or `npm run sync`), with a name generated from the ID (`coping-skills` → `coping skills`).
+Each new one is reported, e.g. `➕ New tag created: energy`, so typos are easy to spot.
+
+## Adding an entry
+```bash
+npm run add -- --title "Spoon theory" \
+  --description "A way to describe limited energy." \
+  --tag coping-skills --tag energy \
+  --category adhd \
+  --link "Original essay|https://example.com" \
+  --image "Diagram|https://example.com/diagram.png" \
+  --favourite
+```
+
+`--title` and `--description` are required. `--tag`, `--category`, `--link` and `--image` can be repeated.
+The catalogue is only saved if the result is valid.
+
+You can also edit `catalogue.json` by hand, then run `npm run sync`.
+
+## Project layout
+| Path | Purpose |
+|---|---|
+| `catalogue.json` | The data |
+| `catalogue.schema.json` | The formal rules for the data |
+| `src/catalogue.ts` | TypeScript types and tag/category logic |
+| `src/entries.ts` | `createEntry()` |
+| `src/render.ts` | Builds the page |
+| `scripts/` | The `add` and `sync` commands |

@@ -1,4 +1,4 @@
-// Builds the catalogue page. Replaces the templates in catalogue.xsl.
+// Builds the catalogue page from catalogue.json.
 
 import { namesFor, type Catalogue, type Entry, type Image } from "./catalogue.ts";
 import { formatDate } from "./dates.ts";
