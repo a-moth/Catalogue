@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "catalogue.schema.json",
+  "title": "Catalogue",
+  "description": "A catalogue of entries, each linked to tags and categories by ID.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "tags", "categories", "entries"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "tags": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/label" }
+    },
+    "categories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/label" }
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "description": "Lowercase words joined by single hyphens, e.g. 'coping-skills'.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "nonEmptyText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "label": {
+      "description": "A tag or category.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "name": { "$ref": "#/$defs/nonEmptyText" }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "metadata",
+        "title",
+        "description",
+        "tagIds",
+        "categoryIds",
+        "images",
+        "links",
+        "favourite"
+      ],
+      "properties": {
+        "id": {
+          "description": "Stable identifier; new entries use a UUID.",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["created", "modified"],
+          "properties": {
+            "created": { "type": "string", "format": "date-time" },
+            "modified": {
+              "oneOf": [
+                { "type": "string", "format": "date-time" },
+                { "type": "null" }
+              ]
+            }
+          }
+        },
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "description": { "$ref": "#/$defs/nonEmptyText" },
+        "tagIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/slug" }
+        },
+        "categoryIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/slug" }
+        },
+        "images": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/image" }
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/link" }
+        },
+        "favourite": { "type": "boolean" }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "href"],
+      "properties": {
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "href": { "type": "string", "format": "uri" },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "href"],
+      "properties": {
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "href": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

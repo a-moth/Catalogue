@@ -1,11 +1,16 @@
 {
   "scripts": {
-    "dev": "vite"
-  },
-  "dependencies": {
-    "xmlbuilder2": "^4.0.3"
+    "dev": "vite",
+    "sync": "node scripts/sync.ts",
+    "typecheck": "tsc",
+    "add": "node scripts/add-entry.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "typescript": "^5.9.3",
     "vite": "^8.1.5"
-  }
+  },
+  "type": "module"
 }
