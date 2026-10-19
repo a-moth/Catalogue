@@ -12,5 +12,5 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "include": ["src", "scripts", "entries.ts"]
+  "include": ["src", "scripts"]
 }

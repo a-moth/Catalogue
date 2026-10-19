@@ -2,10 +2,8 @@
   "scripts": {
     "dev": "vite",
     "sync": "node scripts/sync.ts",
-    "typecheck": "tsc"
-  },
-  "dependencies": {
-    "xmlbuilder2": "^4.0.3"
+    "typecheck": "tsc",
+    "add": "node scripts/add-entry.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
