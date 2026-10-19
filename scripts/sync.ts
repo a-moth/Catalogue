@@ -6,17 +6,10 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import type { Catalogue, Label } from "../src/catalogue.ts";
 
 const CATALOGUE_PATH = new URL("../catalogue.json", import.meta.url);
 const SCHEMA_PATH = new URL("../catalogue.schema.json", import.meta.url);
-
-type Label = { id: string; name: string };
-
-type Catalogue = {
-  tags: Label[];
-  categories: Label[];
-  entries: { id: string; tagIds: string[]; categoryIds: string[] }[];
-};
 
 // "coping-skills" -> "coping skills"; rename freely afterwards, the ID stays.
 function nameFromId(id: string): string {
